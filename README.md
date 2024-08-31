@@ -10,12 +10,34 @@
   - Root 모듈 Project에서 새 Module추가  
     - Spring Initializer 선택  
       (Spring으로 해야 Boot Main Thread 클래스가 생성되며 일반 module일 경우 일반 Main클래스가 생성된다.)
+      - Spring module의 경우 아래 부분을 직접 추가해 줘야 한다.
+        - {root module}/pom.xml
+            ```xml
+            </developers>
+              <!-- module 추가 시작  -->
+              <modules>
+                <module>module-application</module>
+                <module>module-redis</module>
+              </modules>
+              <!-- module 추가 종료  -->
+            <scm>
+            ```
+        - {child module}/pom.xml
+          ```xml
+          <!-- 기존 spring에서 root module로 수정  -->
+          <parent>
+            <groupId>com.fc</groupId>
+            <artifactId>fc-ecommerce</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <relativePath/> <!-- lookup parent from repository -->
+          </parent>
+          ```
 ### 3. 순수 컴포넌트 모듈 구성 (module-redis/module-kafka)
   - Root 모듈 Project에서 새 Module추가
     - New Module을 선택
 ### 4. Root 모듈 pom.xml에 자식 모듈을 dependency로 관리한다.
   - (root module)/pom.xml
-   ```
+   ```xml
    <dependency>
        <groupId>com.fc</groupId>
        <artifactId>module-redis</artifactId>
