@@ -17,7 +17,6 @@
               <!-- module 추가 시작  -->
               <modules>
                 <module>module-application</module>
-                <module>module-redis</module>
               </modules>
               <!-- module 추가 종료  -->
             <scm>
@@ -55,10 +54,32 @@
     ```java
     @SpringBootApplication(
             /* 모든 모듈을 다 스캔하는 것은 시간도 오래걸리고 굉장히 비효율적이기 때문에, 빈으로 등록해야 되는 필요한 것들만 명시한다. */
-            scanBasePackages = {"com.fc"}
+            scanBasePackages = {"com.fc.moduleredis"}
     )
     public class MainApplication {/*생략*/}
     ```
+### cylce 관련 디펜던시 순환참조 문제
+- Build Output Error Message
+  ```text/plain
+  java: Annotation processing is not supported for module cycles. Please ensure that all modules from cycle [module-application,module-redis] are excluded from annotation processing
+  ```
+- {root module}/pom.xml
+  ```xml
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.1</version>
+        <configuration>
+          <compilerArgs>
+            <arg>-proc:none</arg> <!-- 애너테이션 프로세서를 비활성화 -->
+          </compilerArgs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  ```****
 </details>
 
 # Ch01. 이커머스 비즈니스 이해
