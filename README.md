@@ -84,3 +84,6 @@
 
 # Ch01. 이커머스 비즈니스 이해.md
 [▶ Ch01. 이커머스 비즈니스 이해.md](Ch01.%20%EC%9D%B4%EC%BB%A4%EB%A8%B8%EC%8A%A4%20%EB%B9%84%EC%A6%88%EB%8B%88%EC%8A%A4%20%EC%9D%B4%ED%95%B4.md)
+
+# Ch01. 이커머스 비즈니스 이해.md
+[▶ Ch02. Redis 활용 서비스 설계.md](Ch02.%20Redis%20%ED%99%9C%EC%9A%A9%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EC%84%A4%EA%B3%84.md)
