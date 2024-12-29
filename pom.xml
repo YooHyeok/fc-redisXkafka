@@ -24,6 +24,7 @@
 	<modules>
 		<module>module-application</module>
 		<module>module-redis</module>
+		<module>module-kafka</module>
 	</modules>
 	<scm>
 		<connection/>
@@ -52,6 +53,11 @@
 		<dependency>
 			<groupId>com.fc</groupId>
 			<artifactId>module-redis</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fc</groupId>
+			<artifactId>module-kafka</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
