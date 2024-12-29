@@ -90,3 +90,6 @@
 
 # Ch03. Redis의 기본개념.md
 [▶ Ch03. Redis의 기본개념.md](Ch03.%20Redis%EC%9D%98%20%EA%B8%B0%EB%B3%B8%EA%B0%9C%EB%85%90.md)
+
+# Ch04. Redis 설치 및 Configuration.md
+[▶Ch04. Redis 설치 및 Configuration.md](Ch04.%20Redis%20%EC%84%A4%EC%B9%98%20%EB%B0%8F%20Configuration.md)
