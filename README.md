@@ -33,31 +33,54 @@
           ```
 ### 3. 순수 컴포넌트 모듈 구성 (module-redis/module-kafka)
   - Root 모듈 Project에서 새 Module추가
-    - New Module을 선택
+    - `Root Project 마우스 우클릭` > `New` > `Module` > `좌측 사이드바 최 상단 New Module을 선택` > `module 이름 입력`
+
+이때, root module의 pom.xml에는 아래와 같이 module이 자동으로 추가된다.
+  - (root module)/pom.xml
+    ```xml
+     </developers>
+     <modules>
+       <module>module-application</module> <!-- 직접 추가됨 -->
+       <module>module-redis</module> <!-- 자동 추가됨 -->
+       <module>module-kafka</module> <!-- 자동 추가됨 -->
+     </modules>
+     <scm>
+    ```
 ### 4. Root 모듈 pom.xml에 자식 모듈을 dependency로 관리한다.
   - (root module)/pom.xml
-   ```xml
-   <dependency>
-       <groupId>com.fc</groupId>
-       <artifactId>module-redis</artifactId>
-       <version>0.0.1-SNAPSHOT</version>
-   </dependency>
-   <dependency>
-       <groupId>com.fc</groupId>
-       <artifactId>module-application</artifactId>
-       <version>0.0.1-SNAPSHOT</version>
-   </dependency>
-   ```
+    ```xml
+    <dependency>
+        <groupId>com.fc</groupId>
+        <artifactId>module-redis</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+        <groupId>com.fc</groupId>
+        <artifactId>module-application</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    ```
 ### 5. Main Thread 서버 모듈의 Main클래스 수정
 - @SpringBootApplication 어노테이션 scanBasePackages 옵션 추가
   - module-application/MainApplication.java
     ```java
     @SpringBootApplication(
             /* 모든 모듈을 다 스캔하는 것은 시간도 오래걸리고 굉장히 비효율적이기 때문에, 빈으로 등록해야 되는 필요한 것들만 명시한다. */
-            scanBasePackages = {"com.fc.moduleredis"}
+            scanBasePackages = {"com.fc.modulekafka"}
     )
     public class MainApplication {/*생략*/}
     ```
+### 6. 공통 모듈 Dependency
+Lombok과 같은 공통 모듈은 root 모듈에 선언한다.  
+이때, scope 옵션을 provided로 적용한다.
+- (root module)/pom.xml
+  ```xml
+  <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+  </dependency>
+  ```
 ### cylce 관련 디펜던시 순환참조 문제
 - Build Output Error Message
   ```text/plain
