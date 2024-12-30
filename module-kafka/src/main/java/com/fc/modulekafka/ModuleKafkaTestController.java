@@ -1,15 +1,15 @@
-package com.fc.moduleredis;
+package com.fc.modulekafka;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ModuleRedisTestController {
+public class ModuleKafkaTestController {
 
-    @GetMapping("/redis")
+    @GetMapping("/kafka")
     public String main(String[] args) {
-        System.out.println("Hello Redis!");
-        return "Hello Redis!";
+        System.out.println("Hello Kafka!");
+        return "Hello Kafka!";
     }
 
 }
