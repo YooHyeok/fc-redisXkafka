@@ -115,4 +115,7 @@ Lombok과 같은 공통 모듈은 root 모듈에 선언한다.
 [▶ Ch03. Redis의 기본개념.md](Ch03.%20Redis%EC%9D%98%20%EA%B8%B0%EB%B3%B8%EA%B0%9C%EB%85%90.md)
 
 # Ch04. Redis 설치 및 Configuration.md
-[▶Ch04. Redis 설치 및 Configuration.md](Ch04.%20Redis%20%EC%84%A4%EC%B9%98%20%EB%B0%8F%20Configuration.md)
+[▶ Ch04. Redis 설치 및 Configuration.md](Ch04.%20Redis%20%EC%84%A4%EC%B9%98%20%EB%B0%8F%20Configuration.md)
+
+# Ch05. Redis 활용 서비스 개발.md
+[▶ Ch05. Redis 활용 서비스 개발.md](Ch05.%20Redis%20%ED%99%9C%EC%9A%A9%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EA%B0%9C%EB%B0%9C.md)
