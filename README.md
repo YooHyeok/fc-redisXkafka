@@ -66,7 +66,7 @@
     ```java
     @SpringBootApplication(
             /* 모든 모듈을 다 스캔하는 것은 시간도 오래걸리고 굉장히 비효율적이기 때문에, 빈으로 등록해야 되는 필요한 것들만 명시한다. */
-            scanBasePackages = {"com.fc.modulekafka"}
+            scanBasePackages = {"com.fc.moduleredis", "com.fc.modulekafka"}
     )
     public class MainApplication {/*생략*/}
     ```
@@ -103,6 +103,54 @@ Lombok과 같은 공통 모듈은 root 모듈에 선언한다.
     </plugins>
   </build>
   ```
+  
+위 방법으로 해결되지 않았으며, 루트 pom.xml에 있는 3개(application, redis, kafka)의 멀티 모듈에 대한 의존성을 모두 제거한 뒤,  
+redis와 kafka를 직접적으로 사용하는 application 모듈에 두 의존성을 추가함.
+(이때 root 모듈의 module로 등록된 자식 모듈들은 그대로 구성해야하며 이전에 설정한 애너테이션 프로세서를 비활성화 플러그인을 제거해야 한다.)
+
+- {root module}/pom.xml
+  ```xml
+  <modules>
+    <module>module-application</module>
+    <module>module-redis</module>
+    <module>module-kafka</module>
+  </modules>
+  <!-- 자식모듈 dependency 제거 -->
+  <!-- 애너테이션 프로세서를 비활성화 플러그인 제거 -->
+  ```
+- module-application/pom.xml
+  ```xml
+  <dependency>
+        <groupId>com.fc</groupId>
+        <artifactId>module-redis</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+        <groupId>com.fc</groupId>
+        <artifactId>module-kafka</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+  </dependency>
+  ```
+- {자식 module}/pom.xml
+  ```xml
+
+  ```
+
+### 최종 구성 파일
+- [루트 - pom.xml](pom.xml)
+- [자식 공통 모듈 - pom.xml](module-application%2Fpom.xml)
+- [자식 모듈1 Redis - pom.xml](module-redis%2Fpom.xml)
+- [자식 모듈2 Kafka - pom.xml](module-kafka%2Fpom.xml)
+
+### 프로젝트 최종 구성 디렉토리
+📂`프로젝트(루트모듈)`: **fc-ecommerce**   
+┠ 📂 `자식 공통모듈`: **module-application**(Spring)  
+┃ ┖ 📄 pom.xml  
+┠ 📂 `자식 모듈 1`: **module-kafka**(Maven)  
+┃ ┖ 📄 pom.xml  
+┠ 📂 `자식 모듈 2`: **module-redis**(Maven)  
+┃ ┖ 📄 pom.xml  
+┖━━━━━━━━━━━━━━━━━━━━━━━━━
 </details>
 
 # [Ch01. 이커머스 비즈니스 이해.md](Ch01.%20%EC%9D%B4%EC%BB%A4%EB%A8%B8%EC%8A%A4%20%EB%B9%84%EC%A6%88%EB%8B%88%EC%8A%A4%20%EC%9D%B4%ED%95%B4.md)
