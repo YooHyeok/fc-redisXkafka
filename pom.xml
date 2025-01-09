@@ -49,23 +49,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>com.fc</groupId>
-			<artifactId>module-redis</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fc</groupId>
-			<artifactId>module-kafka</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fc</groupId>
-			<artifactId>module-application</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -79,16 +62,16 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
+			<!--<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.10.1</version>
 				<configuration>
 					<compilerArgs>
-						<arg>-proc:none</arg> <!-- 애너테이션 프로세서를 비활성화 -->
+						<arg>-proc:none</arg> &lt;!&ndash; 애너테이션 프로세서를 비활성화 &ndash;&gt;
 					</compilerArgs>
 				</configuration>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 
