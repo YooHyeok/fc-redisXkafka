@@ -1,5 +1,7 @@
 package com.fc.moduleapplication.controller;
 
+import com.fc.moduleapplication.service.LowestPriceService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,14 +15,16 @@ import java.util.Set;
  */
 @RestController
 @RequestMapping("/")
+@RequiredArgsConstructor
 public class LowestPriceController {
 
+    private final LowestPriceService lowestPriceService;
     /**
      * 데이터 조회
      * 요청 URL: http://localhost:8080/getZSETValue?key=FPG0001
      */
     @GetMapping("/getZSETValue")
     public Set getZsetValue(String key) {
-        return Collections.emptySet();
+        return lowestPriceService.getZsetValue(key);
     }
 }
