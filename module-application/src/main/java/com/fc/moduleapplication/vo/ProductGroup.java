@@ -8,6 +8,6 @@ import java.util.List;
  */
 @Data
 public class ProductGroup {
-    private String prodGrpId; // ex) FPG0001
+    private String productGroupId; // ex) FPG0001
     private List<Product> productList; // [{"21fa823e-edaa-4d81-8203-ab70b29812cc": 25000}, {}, ...]
 }
