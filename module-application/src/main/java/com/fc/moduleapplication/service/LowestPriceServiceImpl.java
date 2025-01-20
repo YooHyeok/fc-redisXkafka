@@ -33,4 +33,26 @@ public class LowestPriceServiceImpl implements LowestPriceService {
         return zSetOperations.rangeWithScores(key, 0, 9); // 범위 기준 Scores(price) 조회: ZRANGE key 0 9 withscores (key, 시작범위, 끝범위)
     }
 
+    /**
+     * <h1>Redis(ZSET-ZADD,ZRANK) 추가 및 추가된 값 순위 조회</h1>
+     * <pre>
+     *      Redis ZSET(sorted set) ZADD 추가 및 ZRANK 조회
+     *        1. productGroupId(key), productId(member), price(score) 데이터를 추가한다.
+     *        2. productGroupId(key) 에서 productId(member)에 대한 순위를 조회한다.
+     *      Redis ZSET 추가
+     *        - Redis 추가 메소드: add(상품그룹Id(key), 상품Id(member), 가격(score))
+     *        - Redis 추가 명령: zadd {상품그룹Id(key)} {가격(score)} {상품Id(member)}
+     *      Redis ZSET 순위 조회
+     *        - Redis 순위 조회 메소드: rank(상품그룹Id(key), 상품Id(member))
+     *        - Redis 순위 조회 명령: zrank {상품그룹Id(key)} {가격(score)}}
+     * </pre>
+     * @param product
+     * @return 순위값
+     */
+    @Override
+    public int setNewProduct(Product product) {
+        ZSetOperations zSetOperations = redisTemplate.opsForZSet();
+        zSetOperations.add(product.getProductGroupId(), product.getProductId(), product.getPrice()); // key, value, score 순서로 product 정보를 추가한다.
+        return zSetOperations.rank(product.getProductGroupId(), product.getProductId()).intValue(); // 추가한 상품 랭킹 조회
+    }
 }
